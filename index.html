@@ -22,6 +22,16 @@
             <button id="RemoveButton" onclick="remove(this)">Dzēst</button>
             <button id="EditButton" onclick="edit(this)">Rediģēt</button>
         </div>
+        <button id="openForm" onclick="openForm()">Pievienot</button>
+    </div>
+
+    <div id="overlay">
+        <form id="newTodoForm" action="#">
+            <input id="newTask" type="text" placeholder="Taks" required>
+            <input id="newDueDate" type="date" required>
+            <br>
+            <button onclick="add()">Pievienot</button>
+        </form>
     </div>
 
     <script src="js/script.js"></script>
