@@ -18,15 +18,26 @@ h1{
     border-radius: 6px;
 }
 #taskHeader{
-    border: none;
     background-color: rgb(114, 113, 113);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
 }
 .task{
-    width: 60%;
+    width: 55%;
     display: inline-block;
 }
-.dueDate{
-    width: 30%;
+.date{
+    width: 10%;
+    display: inline-block;
+
+}
+.time{
+    width: 10%;
+    display: inline-block;
+}
+.removeColumn, .editColumn{
+    width: 10%;
     display: inline-block;
 }
 #overlay{

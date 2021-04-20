@@ -10,27 +10,32 @@
 <body>
     <h1>TODO</h1>
     <div id="taskCanvas">
-        <div class="taskBox" id="taskHeader">
+        <div id="taskHeader">
             <span class="task">Uzdevums</span>
-            <span class="dueDate">Termiņš</span>
-            <span>Dzēst</span>
-            <span>Rediģēt</span>
+            <span class="date">Datums</span>
+            <span class="time">Laiks</span>
+            <span class="removeColumn">Dzēst</span>
+            <span class="editColumn">Rediģēt</span>
         </div>
-        <div class="taskBox">
+        <div class="taskBox" id="0">
             <span class="task">Izpildīt matemātiku</span>
-            <span class="dueDate">21.04.2021</span>
-            <button id="RemoveButton" onclick="remove(this)">Dzēst</button>
-            <button id="EditButton" onclick="edit(this)">Rediģēt</button>
+            <span class="date">2021-04-21</span>
+            <span class="time">08:20</span>
+            <span class="removeColumn"><button id="removeButton" onclick="remove(this)">Dzēst</button></span>
+            <span class="editColumn"><button id="editButton" onclick="opendEditForm(this)">Rediģēt</button></span>
         </div>
-        <button id="openForm" onclick="openForm()">Pievienot</button>
+        <button id="openAddForm">Pievienot</button>
     </div>
 
     <div id="overlay">
         <form id="newTodoForm" action="#">
-            <input id="newTask" type="text" placeholder="Taks" required>
-            <input id="newDueDate" type="date" required>
+            <h2>Pievienot jaunu uzdevumu</h2>
+            <input id="newTask" type="text" placeholder="Taks">
+            <input id="newDueDate" type="date">
+            <input id="newDueTime" type="time">
             <br>
-            <button onclick="add()">Pievienot</button>
+            <button id="completeButton">Pabeigt</button>
+            <button onclick="closeForm()">Atcelt</button>
         </form>
     </div>
 
