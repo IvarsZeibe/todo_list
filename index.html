@@ -13,14 +13,14 @@
         <div class="taskBox" id="taskHeader">
             <span class="task">Uzdevums</span>
             <span class="dueDate">Termiņš</span>
-            <button>x</button>
-            <button>y</button>
+            <span>Dzēst</span>
+            <span>Rediģēt</span>
         </div>
         <div class="taskBox">
-            <span class="task">Izpidlīt matemātiku</span>
+            <span class="task">Izpildīt matemātiku</span>
             <span class="dueDate">21.04.2021</span>
-            <button>x</button>
-            <button>y</button>
+            <button id="RemoveButton" onclick="remove(this)">Dzēst</button>
+            <button id="EditButton" onclick="edit(this)">Rediģēt</button>
         </div>
     </div>
 
