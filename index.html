@@ -9,33 +9,26 @@
 </head>
 <body>
     <h1>TODO</h1>
-    <div id="taskCanvas">
-        <div id="taskHeader">
+    <div id="todo-table">
+        <div id="task-header">
             <span class="task">Uzdevums</span>
             <span class="date">Datums</span>
             <span class="time">Laiks</span>
-            <span class="removeColumn">Dzēst</span>
-            <span class="editColumn">Rediģēt</span>
+            <span class="remove-column">Dzēst</span>
+            <span class="edit-column">Rediģēt</span>
         </div>
-        <div class="taskBox" id="0">
-            <span class="task">Izpildīt matemātiku</span>
-            <span class="date">2021-04-21</span>
-            <span class="time">08:20</span>
-            <span class="removeColumn"><button id="removeButton" onclick="remove(this)">Dzēst</button></span>
-            <span class="editColumn"><button id="editButton" onclick="opendEditForm(this)">Rediģēt</button></span>
-        </div>
-        <button id="openAddForm">Pievienot</button>
+        <button id="new-button">Pievienot</button>
     </div>
 
     <div id="overlay">
-        <form id="newTodoForm" action="#">
+        <form id="new-todo-form">
             <h2>Pievienot jaunu uzdevumu</h2>
-            <input id="newTask" type="text" placeholder="Taks">
-            <input id="newDueDate" type="date">
-            <input id="newDueTime" type="time">
+            <input id="new-task" type="text" placeholder="uzdevums">
+            <input id="new-due-date" type="date">
+            <input id="new-due-time" type="time">
             <br>
-            <button id="completeButton">Pabeigt</button>
-            <button onclick="closeForm()">Atcelt</button>
+            <button type="button" id="complete-button">Pabeigt</button>
+            <button type="button" id="cancel-button">Atcelt</button>
         </form>
     </div>
 

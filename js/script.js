@@ -1,77 +1,15 @@
 let editedTaskId = -1;
 
 let id = 0;
-let tasks = 
-[{"task": "Izpildīt matemātiku",
-"date": "2021-04-21",
-"time": "08:20",
-"id": id}];
+let tasks = [];
 
-function remove(button) {
-    todoBox = button.parentElement.parentElement;
-    todoBox.remove();
-}
-function edit(button) {
-    console.log(editedTaskId.innerHTML);
-
-    for(let task of tasks){
-        if(task.id == editedTaskId){
-            task.task = document.getElementById("newTask").value;
-            task.date = document.getElementById("newDueDate").value;
-            task.time = document.getElementById("newDueTime").value;
-            break;
-        }
-    }
-    render();
-    // editedTask.innerHTML = `
-    //     <span class="task">${document.getElementById("newTask").value}</span>
-    //     <span class="date">${document.getElementById("newDueDate").value}</span>
-    //     <span class="time">${document.getElementById("newDueTime").value}</span>
-    //     <span class="removeColumn"><button id="removeButton" onclick="remove(this)">Dzēst</button></span>
-    //     <span class="editColumn"><button id="editButton">Rediģēt</button></span>`;
-}
-function add() {
-    id++;
-    form = document.getElementById(newTodoForm);
-    let task =
-    {"task": document.getElementById("newTask").value,
-    "date": document.getElementById("newDueDate").value,
-    "time": document.getElementById("newDueTime").value,
-    "id": id};
-    tasks.push(task);
-    render();
-    // todo = document.createElement("div");
-    // todo.id = id;
-    // todo.innerHTML = `
-    //     <div class="taskBox">
-    //         <span class="task">${task.task}</span>
-    //         <span class="date">${task.date}</span>
-    //         <span class="time">${task.time}</span>
-    //         <span class="removeColumn"><button id="removeButton" onclick="remove(this)">Dzēst</button></span>
-    //         <span class="editColumn"><button id="editButton">Rediģēt</button></span>
-    //     </div>`;
-    // document.getElementById("taskCanvas").insertBefore(todo, document.getElementById("openAddForm"));
-}
-function opendEditForm(button) {
-    editedTaskId = button.parentElement.parentElement.id;
-    document.getElementById("newTask").value = tasks[editedTaskId].task;
-    document.getElementById("newDueDate").value = tasks[editedTaskId].date;
-    document.getElementById("newDueTime").value = tasks[editedTaskId].time;
-    openForm();
-}
-document.getElementById("openAddForm").addEventListener('click', ()=>{
+document.getElementById("new-button").addEventListener("click", ()=>{
     editedTaskId = -1;
-    openForm();
-})
-function openForm(){
     document.getElementById("overlay").style.display = "flex";
-}
-function closeForm() {
-    document.getElementById("newTask").value = "";
-    document.getElementById("newDueDate").value = "";
-    document.getElementById("overlay").style.display = "none";
-}
-document.getElementById("completeButton").addEventListener("click", ()=>{
+});
+
+document.getElementById("cancel-button").addEventListener("click", closeForm());
+document.getElementById("complete-button").addEventListener("click", ()=>{
     if(editedTaskId === -1){
         add();
     }
@@ -80,25 +18,72 @@ document.getElementById("completeButton").addEventListener("click", ()=>{
     }
     closeForm();
 })
+function remove(button) {
+    for(let i = 0; i < tasks.length; i++){
+        if(tasks[i].id == button.parentElement.parentElement.id){
+            tasks.splice(i, 1);
+        }
+    }
+    render();
+}
+function edit(button) {
+    for(let task of tasks){
+        if(task.id == editedTaskId){
+            task.task = document.getElementById("new-task").value;
+            task.date = document.getElementById("new-due-date").value;
+            task.time = document.getElementById("new-due-time").value;
+            break;
+        }
+    }
+    render();
+}
+function add() {
+    id++;
+    form = document.getElementById("new-todo-form");
+    let task =
+    {"task": document.getElementById("new-task").value,
+    "date": document.getElementById("new-due-date").value,
+    "time": document.getElementById("new-due-time").value,
+    "id": id};
+    tasks.push(task);
+    render();
+}
+function openEditForm(button) {
+    editedTaskId = button.parentElement.parentElement.id;
+    
+    for(let i = 0; i < tasks.length; i++){
+        if(tasks[i].id == editedTaskId)
+        document.getElementById("new-task").value = tasks[i].task;
+        document.getElementById("new-due-date").value = tasks[i].date;
+        document.getElementById("new-due-time").value = tasks[i].time;
+    }
+    openForm();
+}
+function openForm(createTodo = true){
+    document.getElementById("overlay").style.display = "flex";
+}
+function closeForm() {
+    document.getElementById("new-task").value = "";
+    document.getElementById("new-due-date").value = "";
+    document.getElementById("overlay").style.display = "none";
+}
 function render(){
-    let taskCanvas = document.getElementById("taskCanvas");
-    //let header = taskCanvas.children[0];
-    let len = taskCanvas.children.length - 1;
+    let todoTable = document.getElementById("todo-table");
+    let len = todoTable.children.length - 1;
     for (let i = 1; i < len; i++) {
-        console.log(taskCanvas.children[1].innerHTML)
-        taskCanvas.children[1].remove()
+        todoTable.children[1].remove()
     }
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
         todo = document.createElement("div");
         todo.id = task.id;
-        todo.classList.add("taskBox");
+        todo.classList.add("task-box");
         todo.innerHTML = `
             <span class="task">${task.task}</span>
             <span class="date">${task.date}</span>
             <span class="time">${task.time}</span>
-            <span class="removeColumn"><button id="removeButton" onclick="remove(this)">Dzēst</button></span>
-            <span class="editColumn"><button id="editButton" onclick="opendEditForm(this)">Rediģēt</button></span>`;
-        taskCanvas.insertBefore(todo, document.getElementById("openAddForm"));
+            <span class="remove-column"><button class="remove-button" onclick="remove(this)">Dzēst</button></span>
+            <span class="edit-column"><button class="edit-button" onclick="openEditForm(this)">Rediģēt</button></span>`;
+        todoTable.insertBefore(todo, document.getElementById("new-button"));
     }
 }
