@@ -1,7 +1,11 @@
 let editedTaskId = -1;
-
 let id = 0;
 let tasks = [];
+
+window.addEventListener("load", ()=>{
+    tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    render();
+})
 
 document.getElementById("new-button").addEventListener("click", ()=>{
     editedTaskId = -1;
@@ -92,4 +96,5 @@ function render(){
             <span class="edit-column"><button class="edit-button">Rediģēt</button></span>`;
         todoTable.insertBefore(todo, document.getElementById("new-button"));
     }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
