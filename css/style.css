@@ -6,10 +6,10 @@ h1{
     display: flex;
     justify-content: center;
 }
-#remove-button{
+.remove-button{
     background-color: lightsalmon;
 }
-#edit-button{
+.edit-button{
     background-color: rgb(182, 223, 248);
 }
 #todo-table{
