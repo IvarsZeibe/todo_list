@@ -5,10 +5,10 @@ let tasks = [];
 
 document.getElementById("new-button").addEventListener("click", ()=>{
     editedTaskId = -1;
+    document.getElementById("form-title").innerHTML = "Pievienot jaunu uzdevumu";
     document.getElementById("overlay").style.display = "flex";
 });
-
-document.getElementById("cancel-button").addEventListener("click", closeForm());
+document.getElementById("cancel-button").addEventListener("click", closeForm);
 document.getElementById("complete-button").addEventListener("click", ()=>{
     if(editedTaskId === -1){
         add();
@@ -18,6 +18,15 @@ document.getElementById("complete-button").addEventListener("click", ()=>{
     }
     closeForm();
 })
+document.getElementById("todo-table").addEventListener("click", (e)=>{
+    button = e.target;
+    if(button.className == "remove-button"){
+        remove(button);
+    }
+    else if(button.className == "edit-button"){
+        openEditForm(button);
+    }
+})
 function remove(button) {
     for(let i = 0; i < tasks.length; i++){
         if(tasks[i].id == button.parentElement.parentElement.id){
@@ -25,6 +34,17 @@ function remove(button) {
         }
     }
     render();
+}
+function openEditForm(button) {
+    editedTaskId = button.parentElement.parentElement.id;
+    for(let i = 0; i < tasks.length; i++){
+        if(tasks[i].id == editedTaskId)
+        document.getElementById("new-task").value = tasks[i].task;
+        document.getElementById("new-due-date").value = tasks[i].date;
+        document.getElementById("new-due-time").value = tasks[i].time;
+    }
+    document.getElementById("form-title").innerHTML = "Rediģēt uzdevumu";
+    document.getElementById("overlay").style.display = "flex";
 }
 function edit(button) {
     for(let task of tasks){
@@ -48,20 +68,6 @@ function add() {
     tasks.push(task);
     render();
 }
-function openEditForm(button) {
-    editedTaskId = button.parentElement.parentElement.id;
-    
-    for(let i = 0; i < tasks.length; i++){
-        if(tasks[i].id == editedTaskId)
-        document.getElementById("new-task").value = tasks[i].task;
-        document.getElementById("new-due-date").value = tasks[i].date;
-        document.getElementById("new-due-time").value = tasks[i].time;
-    }
-    openForm();
-}
-function openForm(createTodo = true){
-    document.getElementById("overlay").style.display = "flex";
-}
 function closeForm() {
     document.getElementById("new-task").value = "";
     document.getElementById("new-due-date").value = "";
@@ -82,8 +88,8 @@ function render(){
             <span class="task">${task.task}</span>
             <span class="date">${task.date}</span>
             <span class="time">${task.time}</span>
-            <span class="remove-column"><button class="remove-button" onclick="remove(this)">Dzēst</button></span>
-            <span class="edit-column"><button class="edit-button" onclick="openEditForm(this)">Rediģēt</button></span>`;
+            <span class="remove-column"><button class="remove-button">Dzēst</button></span>
+            <span class="edit-column"><button class="edit-button">Rediģēt</button></span>`;
         todoTable.insertBefore(todo, document.getElementById("new-button"));
     }
 }
