@@ -40,6 +40,7 @@ h1{
 .task{
     width: 45%;
     display: inline-block;
+    word-wrap: break-word;
 }
 .date{
     width: 15%;
