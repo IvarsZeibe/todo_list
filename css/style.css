@@ -12,6 +12,11 @@ h1{
 .edit-button{
     background-color: rgb(182, 223, 248);
 }
+#new-button{
+    background-color: rgb(120, 243, 147);
+    border-color: rgb(89, 179, 0);
+    border-radius: 10px;
+}
 #todo-table{
     margin: 50px;
     padding: 10px;
@@ -33,16 +38,16 @@ h1{
     margin-bottom: 10px;
 }
 .task{
-    width: 55%;
+    width: 45%;
     display: inline-block;
 }
 .date{
-    width: 10%;
+    width: 15%;
     display: inline-block;
 
 }
 .time{
-    width: 10%;
+    width: 15%;
     display: inline-block;
 }
 .remove-column, .edit-column{

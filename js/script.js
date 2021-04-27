@@ -13,13 +13,18 @@ document.getElementById("new-button").addEventListener("click", ()=>{
 });
 document.getElementById("cancel-button").addEventListener("click", closeForm);
 document.getElementById("complete-button").addEventListener("click", ()=>{
-    if(editedTaskId === -1){
-        add();
+    if(document.getElementById("new-task").value === ""){
+        alert("Nav ievadīts uzdevums");
     }
     else{
-        edit();
+        if(editedTaskId === -1){
+            add();
+        }
+        else{
+            edit();
+        }
+        closeForm();
     }
-    closeForm();
 })
 document.getElementById("todo-table").addEventListener("click", (e)=>{
     button = e.target;
