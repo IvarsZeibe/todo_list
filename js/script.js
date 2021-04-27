@@ -75,6 +75,7 @@ function add() {
 function closeForm() {
     document.getElementById("new-task").value = "";
     document.getElementById("new-due-date").value = "";
+    document.getElementById("new-due-time").value = "";
     document.getElementById("overlay").style.display = "none";
 }
 function render(){
