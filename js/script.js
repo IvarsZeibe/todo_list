@@ -1,5 +1,4 @@
 let editedTaskId = -1;
-let id = 0;
 let tasks = [];
 
 window.addEventListener("load", ()=>{
@@ -62,15 +61,23 @@ function edit(button) {
     render();
 }
 function add() {
-    id++;
     form = document.getElementById("new-todo-form");
     let task =
     {"task": document.getElementById("new-task").value,
     "date": document.getElementById("new-due-date").value,
     "time": document.getElementById("new-due-time").value,
-    "id": id};
+    "id": getNewId()};
     tasks.push(task);
     render();
+}
+function getNewId(id = 0){
+    tasks.forEach(task => {
+        if(task.id == id){
+            id = getNewId(id + 1);
+            return;
+        }
+    });
+    return id;
 }
 function closeForm() {
     document.getElementById("new-task").value = "";
